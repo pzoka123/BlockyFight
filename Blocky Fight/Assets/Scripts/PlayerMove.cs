@@ -3,38 +3,44 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-	Rigidbody2D rgBody;
-	float speed = 0.15f;
-	float jumpforce = 100f;
+    Rigidbody2D rgbd2D;
+    Vector3 velocity;
 
-	public Transform groundCheckPoint;
-	public float groundCheckRad;
-	public LayerMask groundLayer;
-	public bool isGrounded;
-
-
-	// Use this for initialization
-	void Start()
-	{
-		rgBody = gameObject.GetComponent<Rigidbody2D> ();
-	}
+    // Use this for initialization
+    void Start()
+    {
+        rgbd2D = gameObject.GetComponent<Rigidbody2D>();
+        velocity = rgbd2D.velocity;
+    }
 	
-	// Update is called once per frame
-	void FixedUpdate()
-	{
-		isGrounded = Physics2D.OverlapCircle (groundCheckPoint.position, groundCheckRad, groundLayer);
+    // Update is called once per frame
+    void Update()
+    {
+        Move();
+    }
 
-		move();
-	}
-
-	void move()
-	{
-		float moveX = Input.GetAxis("Horizontal");
-		rgBody.position += new Vector2 (moveX * speed, 0);
-
-		if (Input.GetKey (KeyCode.W) && isGrounded)
-		{
-			rgBody.AddForce (new Vector2 (0, jumpforce));
-		}
-	}
+    void Move()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            velocity.x = 5;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            velocity.x = -5;
+        }
+        if (Input.GetKey(KeyCode.D) == false && Input.GetKey(KeyCode.A) == false)
+        {
+            velocity.x = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.W) == true && velocity.y == 0)
+        {
+            rgbd2D.AddForce(new Vector2(0, 500)); 
+        }
+        else
+        {
+            velocity.y = rgbd2D.velocity.y;
+        }
+        rgbd2D.velocity = velocity;
+    }
 }
