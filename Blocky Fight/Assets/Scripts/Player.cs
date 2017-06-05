@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public GameObject bullet;
+    public bool isRight;
+
     // Use this for initialization
     public override void Start()
     {
         grounds = GameObject.FindGameObjectsWithTag("Ground");
         rgbd2D = gameObject.GetComponent<Rigidbody2D>();
         velocity = rgbd2D.velocity;
+        isRight = true;
     }
 
     protected override void Move()
@@ -39,9 +43,9 @@ public class Player : Character
         {
             velocity.x = 0;
         }
-        if (Input.GetKeyDown(KeyCode.W) == true && isGrounded == true)
+        if (Input.GetKey(KeyCode.W) == true && isGrounded == true)
         {
-            rgbd2D.AddForce(new Vector2(0, 500)); 
+            velocity.y = 8;
         }
         else
         {
@@ -54,11 +58,29 @@ public class Player : Character
     {
         if (velocity.x < 0)
         {
+            isRight = false;
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
         else if (velocity.x > 0)
         {
+            isRight = true;
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
+    protected override void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject bulletInstance;
+            if (isRight)
+            {
+                bulletInstance = Instantiate(bullet, gameObject.transform.position + new Vector3(1, 0, 0), gameObject.transform.rotation) as GameObject;
+            }
+            else if (isRight == false)
+            {
+                bulletInstance = Instantiate(bullet, gameObject.transform.position + new Vector3(-1, 0, 0), gameObject.transform.rotation) as GameObject;
+            }
         }
     }
 }

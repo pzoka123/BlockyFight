@@ -7,10 +7,9 @@ public abstract class Character : MonoBehaviour
     protected GameObject[] grounds;
 
     protected Rigidbody2D rgbd2D;
-    protected Vector3 velocity;
+    public Vector3 velocity;
 
     protected bool isGrounded;
-    protected bool isRight;
 
     // Use this for initialization
     public virtual void Start()
@@ -23,9 +22,16 @@ public abstract class Character : MonoBehaviour
     {
         Move();
         Flip();
+        Attack();
+        if (isGrounded)
+        {
+            velocity.y = 0;
+        }
     }
 
     protected abstract void Move();
 
     protected abstract void Flip();
+
+    protected abstract void Attack();
 }
