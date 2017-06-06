@@ -101,7 +101,7 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -5.12}
+  m_Offset: {x: 0, y: -5.13}
   m_EdgeRadius: 0
   m_Points:
   - {x: -5, y: 0}
@@ -117,8 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cf395a9e2d40e4fa543775db8afb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1293814632008988, guid: cef82060dace04748af1c4225abfdd0a, type: 2}
+  velocity: {x: 0, y: 0, z: 0}
   isRight: 0
+  bullet: {fileID: 1293814632008988, guid: cef82060dace04748af1c4225abfdd0a, type: 2}
 --- !u!212 &212535342665835902
 SpriteRenderer:
   m_ObjectHideFlags: 1

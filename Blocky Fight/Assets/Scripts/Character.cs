@@ -10,6 +10,7 @@ public abstract class Character : MonoBehaviour
     public Vector3 velocity;
 
     protected bool isGrounded;
+    public bool isRight;
 
     // Use this for initialization
     public virtual void Start()
@@ -21,8 +22,8 @@ public abstract class Character : MonoBehaviour
     void Update()
     {
         Move();
-        Flip();
         Attack();
+        Flip();
         if (isGrounded)
         {
             velocity.y = 0;
@@ -31,7 +32,19 @@ public abstract class Character : MonoBehaviour
 
     protected abstract void Move();
 
-    protected abstract void Flip();
-
     protected abstract void Attack();
+
+    protected void Flip()
+    {
+        if (velocity.x < 0)
+        {
+            isRight = false;
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (velocity.x > 0)
+        {
+            isRight = true;
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 }

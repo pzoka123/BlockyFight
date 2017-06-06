@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Camera cam;
-    public GameObject player;
+    GameObject player;
 
     // Use this for initialization
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
     // Update is called once per frame
     void Update()
     {
-        cam.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
     }
 }
