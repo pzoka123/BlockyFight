@@ -45,7 +45,7 @@ public class PlayerBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Ground" || coll.gameObject.tag == "Enemy")
+        if (coll.gameObject.tag == "Ground" || coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "Wall")
         {
             Destroy(gameObject);
         }

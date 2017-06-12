@@ -21,6 +21,7 @@ public abstract class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Load();
         Move();
         Attack();
         Flip();
@@ -29,6 +30,8 @@ public abstract class Character : MonoBehaviour
             velocity.y = 0;
         }
     }
+
+    protected abstract void Load();
 
     protected abstract void Move();
 

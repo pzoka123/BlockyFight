@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - Player Bullet
   - Enemy Bullet
+  - Wall
+  - Jump Spot
+  - Shell
+  - Goal
   layers:
   - Default
   - TransparentFX

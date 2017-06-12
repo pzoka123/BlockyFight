@@ -9,9 +9,15 @@ public class Player : Character
     // Use this for initialization
     public override void Start()
     {
+        isRight = true;
         grounds = GameObject.FindGameObjectsWithTag("Ground");
         rgbd2D = gameObject.GetComponent<Rigidbody2D>();
         velocity = rgbd2D.velocity;
+    }
+
+    protected override void Load()
+    {
+        
     }
 
     protected override void Move()
@@ -71,7 +77,7 @@ public class Player : Character
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

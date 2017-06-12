@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004431442200470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.336857, y: 0.18358564, z: 0}
+  m_LocalPosition: {x: 4.497, y: -2.481, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -5.13}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   isRight: 0
-  target: {fileID: 1077712496717434, guid: 47cd1e0810b83df48a93785a557df796, type: 2}
+  test: 0
 --- !u!212 &212170010590782666
 SpriteRenderer:
   m_ObjectHideFlags: 1

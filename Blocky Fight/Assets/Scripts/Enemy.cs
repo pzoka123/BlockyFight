@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    GameObject target;
+    public float test;
+    public GameObject target;
+    GameObject[] enemies;
+
+    //bool canJump;
 
     // Use this for initialization
     public override void Start()
@@ -13,6 +17,15 @@ public class Enemy : Character
         grounds = GameObject.FindGameObjectsWithTag("Ground");
         rgbd2D = gameObject.GetComponent<Rigidbody2D>();
         velocity = rgbd2D.velocity;
+    }
+
+    protected override void Load()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), enemies[i].GetComponent<BoxCollider2D>());
+        }
     }
 
     protected override void Move()
@@ -30,17 +43,37 @@ public class Enemy : Character
             }
         }
 
-        if (gameObject.transform.position.x < target.transform.position.x)
+        if (target.activeSelf == true)
         {
-            velocity.x = 2;
+            if (gameObject.transform.position.x < target.transform.position.x)
+            {
+                velocity.x = 2;
+            }
+            if (gameObject.transform.position.x > target.transform.position.x)
+            {
+                velocity.x = -2;
+            }
+            if (gameObject.transform.position.x == target.transform.position.x)
+            {
+                velocity.x = 0;
+            }
+
+            // Jumping AI
+            /*
+            if (CheckTargetPos() == true && canJump == true && isGrounded == true)
+            {
+                velocity.y = 8;
+            }
+            else
+            {
+                velocity.y = rgbd2D.velocity.y;
+            }
+            */
         }
-        if (gameObject.transform.position.x > target.transform.position.x)
-        {
-            velocity.x = -2;
-        }
-        if (gameObject.transform.position.x == target.transform.position.x)
+        else
         {
             velocity.x = 0;
+            //velocity.y = rgbd2D.velocity.y;
         }
         velocity.y = rgbd2D.velocity.y;
         rgbd2D.velocity = velocity;
@@ -57,5 +90,27 @@ public class Enemy : Character
         {
             Destroy(gameObject);
         }
+
+        /*
+        if (coll.gameObject.tag == "Jump Spot")
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+        */
     }
+
+    /*
+    bool CheckTargetPos()
+    {
+        if (target.transform.position.y > gameObject.transform.position.y)
+        {
+            return true;
+        }
+        return false;
+    }
+    */
 }
