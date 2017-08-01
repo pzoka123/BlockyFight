@@ -6,6 +6,8 @@ public class Player : Character
 {
     public GameObject bullet;
 
+    public bool isShielded;
+
     // Use this for initialization
     public override void Start()
     {
@@ -17,7 +19,14 @@ public class Player : Character
 
     protected override void Load()
     {
-        
+        if (isShielded == true)
+        {
+            gameObject.transform.Find("Canvas").gameObject.SetActive(true);
+        }
+        else if (isShielded == false)
+        {
+            gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+        }
     }
 
     protected override void Move()
@@ -77,7 +86,14 @@ public class Player : Character
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            gameObject.SetActive(false);
+            if (isShielded == true)
+            {
+                isShielded = false;
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

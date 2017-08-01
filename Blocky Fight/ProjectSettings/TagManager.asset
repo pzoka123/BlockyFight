@@ -12,6 +12,7 @@ TagManager:
   - Jump Spot
   - Shell
   - Goal
+  - Shield
   layers:
   - Default
   - TransparentFX

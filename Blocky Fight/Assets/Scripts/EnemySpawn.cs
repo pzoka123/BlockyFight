@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InvokeRepeating("Spawn",8f, 8f);
+        InvokeRepeating("Spawn",2f, 7f);
         player = GameObject.FindGameObjectWithTag("Player");
     }
 	
