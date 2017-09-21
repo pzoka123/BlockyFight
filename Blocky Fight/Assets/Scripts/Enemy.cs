@@ -10,6 +10,8 @@ public class Enemy : Character
 
     private bool moveLeft;
 
+    private bool isAtGoal;
+
     //bool canJump;
 
     // Use this for initialization
@@ -37,6 +39,19 @@ public class Enemy : Character
         for (int i = 0; i < enemies.Length; i++)
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), enemies[i].GetComponent<BoxCollider2D>());
+        }
+
+        if (isAtGoal == true)
+        {
+            if (moveLeft == true)
+            {
+                gameObject.transform.Find("hammer").gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            gameObject.transform.Find("hammer").gameObject.SetActive(true);
+        }
+        else if (isAtGoal == false)
+        {
+            gameObject.transform.Find("hammer").gameObject.SetActive(false);
         }
     }
 
@@ -134,6 +149,18 @@ public class Enemy : Character
         if (coll.gameObject.tag == "Wall")
         {
             moveLeft = !moveLeft;
+        }
+        if (coll.gameObject.tag == "Shell")
+        {
+            isAtGoal = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Shell")
+        {
+            isAtGoal = false;
         }
     }
 
