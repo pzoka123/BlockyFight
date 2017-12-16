@@ -192,7 +192,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   isRight: 0
-  bullet: {fileID: 1293814632008988, guid: cef82060dace04748af1c4225abfdd0a, type: 2}
+  bulletDefault: {fileID: 1293814632008988, guid: cef82060dace04748af1c4225abfdd0a,
+    type: 2}
+  bulletStrong: {fileID: 0}
+  bulletGrenade: {fileID: 0}
   isShielded: 0
 --- !u!114 &114844206993572616
 MonoBehaviour:
@@ -261,6 +264,8 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!222 &222448782940078728
 CanvasRenderer:
   m_ObjectHideFlags: 1
